@@ -18,5 +18,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Expose the Flask port
 EXPOSE 8080
 
-# Run the Flask app with gunicorn for production
-CMD ["gunicorn", "-b", "0.0.0.0:8080", "app:app"]
+# Use shell to expand $PORT (Render sets $PORT). Fallback to 8080 if not set.
+CMD ["sh", "-c", "gunicorn app:application -b 0.0.0.0:${PORT:-8080} --workers 2 --timeout 120"]
