@@ -1,3 +1,5 @@
+import os
+import httpx
 from flask import Flask, render_template, request, send_file, jsonify
 from pptx import Presentation
 from pptx.util import Pt
